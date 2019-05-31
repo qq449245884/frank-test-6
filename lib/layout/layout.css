@@ -1,0 +1,21 @@
+.gu-layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.gu-layout-content {
+  flex-grow: 1;
+}
+
+.gu-layout .gu-layout {
+  flex-grow: 1;
+  flex-direction: row;
+}
+
+.gu-layout-hasAside {
+  flex-direction: row;
+}
+
+.gu-layout-hasAside .gu-layout {
+  flex-direction: column;
+}

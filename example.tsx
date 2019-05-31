@@ -1,22 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {HashRouter as Router, Route, Link} from 'react-router-dom';
-import IconExample from './lib/icon/icon.example';
+import IconDemo from './lib/icon/icon.demo';
 import ButtonExample from './lib/button.example';
 import DialogExample from './lib/dialog/dialog.example';
 import LayoutExample from './lib/layout/layout.example'
 
+import {Layout ,Aside, Header, Content, Footer} from './lib/layout/layout'
+
+import './example.scss';
+
+const x = require('!!raw-loader!./lib/icon/icon.example.tsx')
+console.log(x.default)
+
+
+const logo = require('./logo.png');
+
 ReactDOM.render(
   <Router>
-    <div>
-      <header>
+    <Layout className="site-page">
+      <Header className="site-header">
         <div className="logo">
-          FUI
+          <img src={logo} width="48" height="48" alt=""/>
+          <span> FUI </span>
         </div>
-
-      </header>
-      <div>
-        <aside>
+      </Header>
+      <Layout>
+        <Aside className="site-aside">
           <h2>组件</h2>
           <ul>
             <li>
@@ -32,14 +42,17 @@ ReactDOM.render(
               <Link to="/layout">Layout</Link>
             </li>
           </ul>
-        </aside>
-        <main>
-          <Route path="/icon" component={IconExample}/>
+        </Aside>
+        <Content className="site-main"> 
+          <Route path="/icon" component={IconDemo}/>
           <Route path="/button" component={ButtonExample}/>
           <Route path="/dialog" component={DialogExample}/>
           <Route path="/layout" component={LayoutExample}/>
-        </main>
-      </div>
-    </div>
+        </Content>
+      </Layout>
+      <Footer className="site-footer">
+        &copy; 前端小智
+      </Footer>
+    </Layout>
   </Router>
   , document.querySelector('#root'));
